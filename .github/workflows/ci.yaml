@@ -30,5 +30,4 @@ jobs:
           sed -i "s|ghcr.io/niaxi691/gitops-sample-app:.*|ghcr.io/niaxi691/gitops-sample-app:${{ github.sha }}|" manifests/base/deployment.yaml
           git config user.name "github-actions"
           git config user.email "niaxi007@gmail.com"
-          git commit -am "Update image to $IMAGE"
-          git push
+          git diff --quiet || (git commit -am "Update image to $IMAGE" && git push)
